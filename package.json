@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/SamuelDub/GM#readme",
   "devDependencies": {
-    "electron": "^1.7.9"
+    "electron": "^1.7.9",
+    "electron-builder": "^19.42.2",
+    "electron-builder-squirrel-windows": "^19.42.0"
   },
   "dependencies": {
     "electron-gh-releases": "^2.0.4"
