@@ -1,0 +1,28 @@
+{
+  "name": "gm",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "index.js"
+  },
+  "build": {
+    "appId": "discordbotapp",
+    "asar": "true",
+    "win": {
+      "target": "squirrel"
+    }
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SamuelDub/GM/issues"
+  },
+  "homepage": "https://github.com/SamuelDub/GM#readme",
+  "devDependencies": {
+    "electron": "^1.7.9"
+  },
+  "dependencies": {
+    "electron-gh-releases": "^2.0.4"
+  }
+}
