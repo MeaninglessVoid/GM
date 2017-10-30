@@ -17,9 +17,9 @@ const updater = new GhReleases(options)
 app.on('ready', function () {
 
     var mainWindow = new BrowserWindow({
-        width: 795,
-        height: 600,
-        resizable: false
+        width: 810,
+        height: 640,
+        resizable: true
     })
 
     mainWindow.loadURL('file://' + __dirname + '/app/main/main.html');
