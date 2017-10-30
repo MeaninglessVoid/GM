@@ -1,0 +1,19 @@
+body {
+    background-color: #21252a;
+    padding: 0;
+    margin: 0;
+}
+
+.game-container {
+    display: inline-block;
+    width: 100%
+}
+
+.game {
+    display: inline-block;
+    margin-left: 1em;
+    margin-top: 1em;
+    width: 23em;
+    height: 10em;
+    background-color: #282c34;
+}

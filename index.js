@@ -17,15 +17,16 @@ const updater = new GhReleases(options)
 app.on('ready', function () {
 
     var mainWindow = new BrowserWindow({
-        width: 800,
+        width: 795,
         height: 600,
-        resizable: false //,
-        //frame: false
+        resizable: false
     })
 
     mainWindow.loadURL('file://' + __dirname + '/app/main/main.html');
 
     mainWindow.focus();
+
+    mainWindow.webContents.openDevTools()
 
     const page = mainWindow.webContents;
 
