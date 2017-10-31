@@ -30,18 +30,20 @@ fs.readdirSync(steam).forEach(file => {
   addGame(file, pictureName);
 })
 
-console.log(gameIcons)
-
 fs.readdirSync(origin).forEach(file => {
   let pictureName;
+  gameIcons[file] = [];
   fs.readdirSync(origin + file).forEach(picture => {
     if (picture.substring(picture.length - 4, picture.length) == '.exe') {
       pictureName = picture;
+      gameIcons[file].push(picture);
       iconExtractor.getIcon(picture, origin + file + "/" + picture);
     }
   })
   addGame(file, pictureName);
 })
+
+console.log(gameIcons);
 
 iconExtractor.emitter.on('icon', function (data) {
   // console.log('Here is my context: ' + data.Context);
