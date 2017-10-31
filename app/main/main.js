@@ -19,7 +19,6 @@ fs.readdirSync(steam).forEach(file => {
   let pictureName;
   fs.readdirSync(steam + file).forEach(picture => {
     if (picture.substring(picture.length - 4, picture.length) == '.exe') {
-      console.log(steam + file + "/" + picture + '.exe');
       pictureName = picture;
       iconExtractor.getIcon(picture, steam + file + "/" + picture);
     }
@@ -31,7 +30,6 @@ fs.readdirSync(origin).forEach(file => {
   let pictureName;
   fs.readdirSync(origin + file).forEach(picture => {
     if (picture.substring(picture.length - 4, picture.length) == '.exe') {
-      console.log(origin + file + "/" + picture + '.exe');
       pictureName = picture;
       iconExtractor.getIcon(picture, origin + file + "/" + picture);
     }
@@ -40,12 +38,20 @@ fs.readdirSync(origin).forEach(file => {
 })
 
 iconExtractor.emitter.on('icon', function (data) {
-    console.log('Here is my context: ' + data.Context);
-    console.log('Here is the path it was for: ' + data.Path);
-    var icon = data.Base64ImageData;
+  console.log('Here is my context: ' + data.Context);
+  console.log('Here is the path it was for: ' + data.Path);
+  var icon = data.Base64ImageData;
 
-    fs.writeFile("./app/icons/" + data.Context.substring(0, data.Context.length - 4) + '.png', icon, 'base64', (err) => {
-        console.log(err);
-    });
+  fs.writeFile("./app/icons/" + data.Context.substring(0, data.Context.length - 4) + '.png', icon, 'base64', (err) => {
+    console.error();
+  });
 
 });
+
+$("#search-text").on("keyup", function () {
+  var g = $(this).val().toLowerCase();
+  $(".game .game-title").each(function () {
+    var s = $(this).text().toLowerCase();
+    $(this).closest('.game')[s.indexOf(g) !== -1 ? 'show' : 'hide']();
+  });
+})
