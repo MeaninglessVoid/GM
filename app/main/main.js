@@ -45,6 +45,10 @@ fs.readdirSync(origin).forEach(file => {
 
 console.log(gameIcons);
 
+// for(let game of gameIcons) {
+//   console.log(game);
+// }
+
 iconExtractor.emitter.on('icon', function (data) {
   // console.log('Here is my context: ' + data.Context);
   // console.log('Here is the path it was for: ' + data.Path);
