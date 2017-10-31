@@ -15,16 +15,22 @@ addGame = (file, picture) => {
 const steam = "C:/Program Files (x86)/Steam/steamapps/common/";
 const origin = "C:/Program Files (x86)/Origin Games/";
 
+let gameIcons = {};
+
 fs.readdirSync(steam).forEach(file => {
   let pictureName;
+  gameIcons[file] = [];
   fs.readdirSync(steam + file).forEach(picture => {
     if (picture.substring(picture.length - 4, picture.length) == '.exe') {
       pictureName = picture;
+      gameIcons[file].push(picture);
       iconExtractor.getIcon(picture, steam + file + "/" + picture);
     }
   })
   addGame(file, pictureName);
 })
+
+console.log(gameIcons)
 
 fs.readdirSync(origin).forEach(file => {
   let pictureName;
@@ -38,8 +44,8 @@ fs.readdirSync(origin).forEach(file => {
 })
 
 iconExtractor.emitter.on('icon', function (data) {
-  console.log('Here is my context: ' + data.Context);
-  console.log('Here is the path it was for: ' + data.Path);
+  // console.log('Here is my context: ' + data.Context);
+  // console.log('Here is the path it was for: ' + data.Path);
   var icon = data.Base64ImageData;
 
   fs.writeFile("./app/icons/" + data.Context.substring(0, data.Context.length - 4) + '.png', icon, 'base64', (err) => {
