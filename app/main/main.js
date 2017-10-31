@@ -1,7 +1,7 @@
 const fs = require('fs');
 const iconExtractor = require('icon-extractor');
 
-addGame = (file) => {
+addGame = (file, picture) => {
   var gameDiv = $(document.createElement('div'));
   var gameTitle = $(document.createElement('h3'));
   gameDiv.addClass('game');
@@ -15,28 +15,28 @@ addGame = (file) => {
 const steam = "C:/Program Files (x86)/Steam/steamapps/common/";
 const origin = "C:/Program Files (x86)/Origin Games/";
 
-var pictureName;
-
 fs.readdirSync(steam).forEach(file => {
+  let pictureName;
   fs.readdirSync(steam + file).forEach(picture => {
-    if (picture.substring(picture.length - 3, picture.length) == '.exe') {
-      console.log(dir + picture + '.exe');
+    if (picture.substring(picture.length - 4, picture.length) == '.exe') {
+      console.log(steam + file + "/" + picture + '.exe');
       pictureName = picture;
-      iconExtractor.getIcon(picture, dir + picture + '.exe');
+      iconExtractor.getIcon(picture, steam + file + "/" + picture);
     }
   })
-  addGame(file, picture);
+  addGame(file, pictureName);
 })
 
 fs.readdirSync(origin).forEach(file => {
-  fs.readdirSync(dir).forEach(picture => {
-    if (picture.substring(picture.length - 3, picture.length) == '.exe') {
-      console.log(dir + picture + '.exe');
+  let pictureName;
+  fs.readdirSync(origin + file).forEach(picture => {
+    if (picture.substring(picture.length - 4, picture.length) == '.exe') {
+      console.log(origin + file + "/" + picture + '.exe');
       pictureName = picture;
-      iconExtractor.getIcon(picture, dir + picture + '.exe');
+      iconExtractor.getIcon(picture, origin + file + "/" + picture);
     }
   })
-  addGame(file, picture);
+  addGame(file, pictureName);
 })
 
 iconExtractor.emitter.on('icon', function (data) {
@@ -44,7 +44,7 @@ iconExtractor.emitter.on('icon', function (data) {
     console.log('Here is the path it was for: ' + data.Path);
     var icon = data.Base64ImageData;
 
-    fs.writeFile(file + '.png', icon, 'base64', (err) => {
+    fs.writeFile("./app/icons/" + data.Context.substring(0, data.Context.length - 4) + '.png', icon, 'base64', (err) => {
         console.log(err);
     });
 
