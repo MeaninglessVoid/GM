@@ -1,15 +1,26 @@
 const fs = require('fs');
 const iconExtractor = require('icon-extractor');
 
-addGame = (file, picture) => {
+addGame = (file, gameIcons) => {
   var gameDiv = $(document.createElement('div'));
+  var gameIcon = $(document.createElement('img'));
   var gameTitle = $(document.createElement('h3'));
+  var playButton = $(document.createElement('input'));
+  //<input type="button" class="buttons" id="start" value="Play Game"></input>
   gameDiv.addClass('game');
+  gameIcon.addClass('game-icon');
   gameTitle.addClass('game-title');
+  playButton.addClass('buttons');
   gameTitle.html(file);
+  console.log(gameIcons);
+  var iconPath = '../icons/' + gameIcons[0].substring(0, gameIcons[0].length - 4) + '.png';
+  gameIcon.attr('src', iconPath);
+  playButton.val('Play Game');
+  playButton.attr('type', 'button')
   $('.game-container').append(gameDiv);
+  $(gameDiv).append(gameIcon);
   $(gameDiv).append(gameTitle);
-  console.log(file);
+  $(gameDiv).append(playButton);
 }
 
 const steam = "C:/Program Files (x86)/Steam/steamapps/common/";
@@ -27,7 +38,6 @@ fs.readdirSync(steam).forEach(file => {
       iconExtractor.getIcon(picture, steam + file + "/" + picture);
     }
   })
-  addGame(file, pictureName);
 })
 
 fs.readdirSync(origin).forEach(file => {
@@ -40,14 +50,14 @@ fs.readdirSync(origin).forEach(file => {
       iconExtractor.getIcon(picture, origin + file + "/" + picture);
     }
   })
-  addGame(file, pictureName);
 })
 
-console.log(gameIcons);
 
-// for(let game of gameIcons) {
-//   console.log(game);
-// }
+for (let game in gameIcons) {
+  if (gameIcons[game].length != 0) {
+    addGame(game, gameIcons[game]);
+  }
+}
 
 iconExtractor.emitter.on('icon', function (data) {
   // console.log('Here is my context: ' + data.Context);

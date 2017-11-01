@@ -14,6 +14,9 @@ body {
 }
 
 .game {
+    padding-top: 1em;
+    border-radius: 5px;
+    text-align: center;
     display: inline-block;
     margin-left: 1em;
     margin-top: 0.5em;
@@ -24,8 +27,15 @@ body {
 
 .game-title {
     text-align: center;
-    /* color: #aaaba0; */
     color: #d5d9dd;
+    margin-left: -32px;
+}
+
+.game-icon {
+    float: left;
+    margin-right: -8em;
+    margin-left: 5em;
+    margin-top: 4.6em;
 }
 
 .search-container {
@@ -42,6 +52,24 @@ body {
     color: #bebfc1;
     text-align: center;
     width: 20em;
+}
+
+.buttons {
+    background-color: #4CAF50;
+    border-radius: 8px;
+    color: white;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #4CAF50 !important;
+    font-size: 10px;
+    margin-top: 1em;
+}
+
+.buttons:hover {
+    background-color: white !important;
+    background-color: white !important;
+    color: #4CAF50;
 }
 
 ::-webkit-scrollbar {
