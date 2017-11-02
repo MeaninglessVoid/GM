@@ -49,7 +49,6 @@ app.on('ready', function () {
                 message: 'A new update has been downloaded, would you like to install it?'
             }, function (response) {
                 if (response == 0) { // Runs the following if 'Yes' is clicked
-                    mainWindow.hide();
                     updater.install()
                 }
             })
