@@ -1,7 +1,6 @@
 const remote = require('electron').remote;
 const fs = require('fs');
 const child = require('child_process').execFile;
-const iconExtractor = require('icon-extractor');
 const app = remote.app;
 
 addGame = (file, gameIcons) => {
@@ -62,7 +61,14 @@ fs.readdirSync(steam).forEach(file => {
     if (picture.substring(picture.length - 4, picture.length) == '.exe') {
       pictureName = picture;
       gameIcons[file].push(picture);
-      iconExtractor.getIcon(picture, steam + file + "/" + picture);
+      var pathToPic = steam + file + "/" + picture;
+      app.getFileIcon(pathToPic, (err, icon) => {
+        console.error(err);
+        gameIcons[file].push(icon.toDataURL());
+        var data = icon.toDataURL().replace(/^data:image\/\w+;base64,/, "");
+        var buf = new Buffer(data, 'base64');
+        fs.writeFile(app.getPath("appData") + "/gm/icons/" + picture.substring(0, picture.length - 4) + '.png', buf);
+      })
     }
   })
 })
@@ -74,7 +80,14 @@ fs.readdirSync(origin).forEach(file => {
     if (picture.substring(picture.length - 4, picture.length) == '.exe') {
       pictureName = picture;
       gameIcons[file].push(picture);
-      iconExtractor.getIcon(picture, origin + file + "/" + picture);
+      var pathToPic = origin + file + "/" + picture;
+      app.getFileIcon(pathToPic, (err, icon) => {
+        console.error(err);
+        gameIcons[file].push(icon.toDataURL());
+        var data = icon.toDataURL().replace(/^data:image\/\w+;base64,/, "");
+        var buf = new Buffer(data, 'base64');
+        fs.writeFile(app.getPath("appData") + "/gm/icons/" + picture.substring(0, picture.length - 4) + '.png', buf);
+      })
     }
   })
 })
@@ -85,17 +98,6 @@ for (let game in gameIcons) {
     addGame(game, gameIcons[game]);
   }
 }
-
-iconExtractor.emitter.on('icon', function (data) {
-  var icon = data.Base64ImageData;
-
-  console.log(app.getPath("appData") + "/gm/" + data.Context.substring(0, data.Context.length - 4) + '.png');
-
-  fs.writeFile(app.getPath("appData") + "/gm/icons/" + data.Context.substring(0, data.Context.length - 4) + '.png', icon, 'base64', (err) => {
-    console.error();
-  });
-
-});
 
 $("#search-text").on("keyup", function () {
   var g = $(this).val().toLowerCase();
