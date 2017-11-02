@@ -4,6 +4,11 @@ const BrowserWindow = electron.BrowserWindow
 const dialog = electron.dialog
 const Menu = electron.Menu
 
+//menu
+const menu = require('./app/menu.js')
+
+const template = menu.array();
+
 //uses github repo as update server
 const GhReleases = require('electron-gh-releases')
 
@@ -16,6 +21,9 @@ const updater = new GhReleases(options)
 
 app.on('ready', function () {
 
+    const menu = Menu.buildFromTemplate(template)
+    Menu.setApplicationMenu(menu)
+
     var mainWindow = new BrowserWindow({
         width: 810,
         height: 640,
@@ -25,8 +33,6 @@ app.on('ready', function () {
     mainWindow.loadURL('file://' + __dirname + '/app/main/main.html');
 
     mainWindow.focus();
-
-    mainWindow.webContents.openDevTools()
 
     const page = mainWindow.webContents;
 

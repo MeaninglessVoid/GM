@@ -1,6 +1,6 @@
 {
   "name": "GM",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A simple game manager for Steam and Origin",
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,7 @@
     "7zip-bin-win": "^2.1.1",
     "child_process": "^1.0.2",
     "electron-gh-releases": "^2.0.4",
+    "electron-prompt": "^0.4.0",
     "fs": "0.0.1-security"
   }
 }

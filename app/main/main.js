@@ -88,11 +88,17 @@ fs.readdirSync(steam).forEach(file => {
       gameIcons[file].push(picture);
       var pathToPic = steam + file + "/" + picture;
       app.getFileIcon(pathToPic, (err, icon) => {
-        console.error(err);
+        if(err) {
+          console.error(err);
+        }
         gameIcons[file].push(icon.toDataURL());
         var data = icon.toDataURL().replace(/^data:image\/\w+;base64,/, "");
         var buf = new Buffer(data, 'base64');
-        fs.writeFile(app.getPath("appData") + "/gm/icons/" + picture.substring(0, picture.length - 4) + '.png', buf);
+        fs.writeFile(app.getPath("appData") + "/gm/icons/" + picture.substring(0, picture.length - 4) + '.png', buf, function (err) {
+          if (err) {
+            console.error(err);
+          }
+        });
       })
     }
   })
@@ -109,11 +115,17 @@ fs.readdirSync(origin).forEach(file => {
       gameIcons[file].push(picture);
       var pathToPic = origin + file + "/" + picture;
       app.getFileIcon(pathToPic, (err, icon) => {
-        console.error(err);
+        if(err) {
+          console.error(err);
+        }
         gameIcons[file].push(icon.toDataURL());
         var data = icon.toDataURL().replace(/^data:image\/\w+;base64,/, "");
         var buf = new Buffer(data, 'base64');
-        fs.writeFile(app.getPath("appData") + "/gm/icons/" + picture.substring(0, picture.length - 4) + '.png', buf);
+        fs.writeFile(app.getPath("appData") + "/gm/icons/" + picture.substring(0, picture.length - 4) + '.png', buf, function (err) {
+          if (err) {
+            console.error(err);
+          }
+        });
       })
     }
   })

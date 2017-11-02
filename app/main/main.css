@@ -36,6 +36,7 @@ body {
     margin-right: -8em;
     margin-left: 5em;
     margin-top: 4.6em;
+    border-radius: 50%;
 }
 
 .search-container {
