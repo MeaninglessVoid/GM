@@ -1,7 +1,7 @@
 {
   "name": "GM",
-  "version": "0.2.0",
-  "description": "A simple game manager",
+  "version": "0.2.1",
+  "description": "A simple game manager for Steam and Origin",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
