@@ -36,33 +36,28 @@ app.on('ready', function () {
         // `status` returns true if there is a new update available
         updater.check((err, status) => {
             if (!err && status) {
-                dialog.showMessageBox({
-                    type: 'question',
-                    buttons: ['Yes', 'No'],
-                    title: 'Confirm',
-                    message: 'A new update is available, would you like to download it and restart?'
-                }, function (response) {
-                    if (response == 0) { // Runs the following if 'Yes' is clicked
-                        mainWindow.hide();
-                        downloadUpdate();
-                    }
-                })
+                updater.download();
             }
         })
 
-        function downloadUpdate() {
-            updater.download();
-        }
-
         // When an update has been downloaded
         updater.on('update-downloaded', (info) => {
-            // Restart the app and install the update
-            updater.install()
+            dialog.showMessageBox({
+                type: 'question',
+                buttons: ['Yes', 'No'],
+                title: 'Confirm',
+                message: 'A new update has been downloaded, would you like to install it?'
+            }, function (response) {
+                if (response == 0) { // Runs the following if 'Yes' is clicked
+                    mainWindow.hide();
+                    updater.install()
+                }
+            })
 
         })
 
         // Access electrons autoUpdater
-        updater.autoUpdater
+        updater.autoUpdater;
     });
 
 });
