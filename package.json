@@ -1,6 +1,6 @@
 {
   "name": "GM",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "A simple game manager",
   "main": "index.js",
   "scripts": {
