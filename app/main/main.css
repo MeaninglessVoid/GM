@@ -14,6 +14,7 @@ body {
 }
 
 .game {
+    text-align: center;
     padding-top: 1em;
     border-radius: 5px;
     text-align: center;
@@ -25,10 +26,18 @@ body {
     background-color: #282c34;
 }
 
+.button-div {
+    display: inline-block;
+    margin: 0px auto;
+    background-color: #21252a;
+    width: 50%;
+    height: 50%;
+    border-radius: 5px;
+}
+
 .game-title {
     text-align: center;
     color: #d5d9dd;
-    margin-left: -32px;
 }
 
 .game-icon {
