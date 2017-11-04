@@ -35,8 +35,11 @@ addGame = (file, gameIcons, parent) => {
   var isSteam = false;
 
   let gamePathSteam = "C:/Program Files (x86)/Steam/userdata/" + parent + '/' + gameIcons;
+  let altGamePathSteam = "C:/Program Files (x86)/Steam/steamapps/common/" + parent;
 
-  if (fs.existsSync(gamePathSteam)) {
+  console.log(altGamePathSteam)
+
+  if (fs.existsSync(gamePathSteam) || fs.existsSync(altGamePathSteam)) {
     isSteam = true;
   }
   //checks if game is from Origin or Steam
@@ -136,6 +139,23 @@ if (!fs.existsSync(app.getPath("appData") + "/gm/links/")) {
   fs.mkdirSync(app.getPath("appData") + "/gm/links/");
 }
 
+var oldSteam = "C:/Program Files (x86)/Steam/steamapps/common"
+
+fs.readdirSync(oldSteam).forEach((element) => {
+  var picked = steamGames.applist.apps.find(app => app.name == element);
+  console.log(picked)
+  if (picked != undefined) {
+    addGame(picked.name, picked.appid, element);
+    ws.create(app.getPath("appData") + "/gm/links/", "steam://rungameid/" + picked.appid, function (err) {
+      if (err) {
+        console.error(err)
+      } else {
+        console.log('game added')
+      }
+    });
+  }
+})
+
 //loops through each folder in the steam directory
 fs.readdirSync(steam).every((element, index) => {
   fs.readdirSync(steam + '/' + element).forEach(picture => {
@@ -212,12 +232,12 @@ $(document).on('click', '.buttons', function () {
   let gamePathSteam = "C:/Program Files (x86)/Steam/userdata/" + parent + '/' + gameId;
   let gamePathOrigin = "C:/Program Files (x86)/Origin Games/" + gameName + "/" + gameId;
 
+  console.log(gameId);
+
   //checks if game is from Origin or Steam
   if (fs.existsSync(gamePathSteam)) {
-    console.log("steam")
     spawnLink(gameId);
   } else if (fs.existsSync(gamePathOrigin)) {
-    console.log("origin")
     runExe(gamePathOrigin);
   }
 
