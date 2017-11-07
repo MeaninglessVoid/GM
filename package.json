@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "dist": "build"
+    "build": "build --win",
+    "ship": "build --win -p always"
   },
   "build": {
-    "appId": "discordbotapp",
+    "appId": "GM",
     "asar": "true",
     "win": {
       "target": "squirrel"

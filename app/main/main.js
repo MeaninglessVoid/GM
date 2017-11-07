@@ -10,6 +10,11 @@ var cmd = require('node-cmd');
 //make shortcut to run steam games
 var ws = require('windows-shortcuts');
 
+
+//run .exe
+const child = require('child_process').execFile;
+const spawn = require('child_process').spawn;
+
 //get updated list of steam games
 var request = require("request");
 
@@ -24,10 +29,6 @@ request({
 })
 
 const steamGames = require(app.getPath("appData") + "/gm/" + 'games.json');
-
-//run .exe
-const child = require('child_process').execFile;
-const spawn = require('child_process').spawn;
 
 //add game to container
 addGame = (file, gameIcons, parent) => {
@@ -63,7 +64,6 @@ addGame = (file, gameIcons, parent) => {
 
   var gameTitle = $(document.createElement('h3'));
   gameTitle.addClass('game-title');
-  gameTitle.html("PUBG");
   gameTitle.html(file);
 
 
@@ -119,9 +119,9 @@ function runExe(executablePath) {
 }
 
 function spawnLink(execPath) {
-  var txt = app.getPath("appData");
-  var txt2 = txt.slice(0, 9) + "\"" + txt.slice(9, txt.length - 16) + "\"" + txt.slice(txt.length - 16);
-  cmd.run('cmd /c start ' + txt2 + "\\gm\\links\\" + execPath + '.lnk');
+  var appData = app.getPath("appData");
+  var appDataLink = appData.slice(0, 9) + "\"" + appData.slice(9, appData.length - 16) + "\"" + appData.slice(appData.length - 16);
+  cmd.run('cmd /c start ' + appDataLink + "\\gm\\links\\" + execPath + '.lnk');
 }
 
 //get path for most popular game clients

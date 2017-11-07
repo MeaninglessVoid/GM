@@ -10,14 +10,16 @@ const menu = require('./app/menu.js')
 const template = menu.array();
 
 //uses github repo as update server
-const GhReleases = require('electron-gh-releases')
+// const GhReleases = require('electron-gh-releases')
 
-let options = {
-    repo: 'SamuelDub/GM',
-    currentVersion: app.getVersion()
-}
+// let options = {
+//     repo: 'SamuelDub/GM',
+//     currentVersion: app.getVersion()
+// }
 
-const updater = new GhReleases(options)
+// const updater = new GhReleases(options)
+
+const autoUpdater = require("electron-updater").autoUpdater;
 
 app.on('ready', function () {
 
@@ -36,34 +38,36 @@ app.on('ready', function () {
 
     const page = mainWindow.webContents;
 
-    page.once('did-frame-finish-load', () => {
+    autoUpdater
+
+    // page.once('did-frame-finish-load', () => {
 
         // Check for updates
         // `status` returns true if there is a new update available
-        updater.check((err, status) => {
-            if (!err && status) {
-                updater.download();
-            }
-        })
+        // updater.check((err, status) => {
+        //     if (!err && status) {
+        //         updater.download();
+        //     }
+        // })
 
         // When an update has been downloaded
-        updater.on('update-downloaded', (info) => {
-            dialog.showMessageBox({
-                type: 'question',
-                buttons: ['Yes', 'No'],
-                title: 'Confirm',
-                message: 'A new update has been downloaded, would you like to install it?'
-            }, function (response) {
-                if (response == 0) { // Runs the following if 'Yes' is clicked
-                    updater.install()
-                }
-            })
+        // updater.on('update-downloaded', (info) => {
+        //     dialog.showMessageBox({
+        //         type: 'question',
+        //         buttons: ['Yes', 'No'],
+        //         title: 'Confirm',
+        //         message: 'A new update has been downloaded, would you like to install it?'
+        //     }, function (response) {
+        //         if (response == 0) { // Runs the following if 'Yes' is clicked
+        //             updater.install()
+        //         }
+        //     })
 
-        })
+        // })
 
         // Access electrons autoUpdater
-        updater.autoUpdater;
-    });
+        // updater.autoUpdater;
+    // });
 
 });
 
