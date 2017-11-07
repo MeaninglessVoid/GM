@@ -1,13 +1,16 @@
 const electron = require('electron')
+// import electron from 'electron'
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const dialog = electron.dialog
 const Menu = electron.Menu
 
-//menu
-const menu = require('./app/menu.js')
+// import { app, BrowserWindow, dialog, Menu } from 'electron'
 
-const template = menu.array();
+//menu
+/*const menu = require('./app/menu.js')
+
+const template = menu.array();*/
 
 //uses github repo as update server
 // const GhReleases = require('electron-gh-releases')
@@ -19,12 +22,12 @@ const template = menu.array();
 
 // const updater = new GhReleases(options)
 
-const autoUpdater = require("electron-updater").autoUpdater;
+// const autoUpdater = require("electron-updater").autoUpdater;
 
 app.on('ready', function () {
 
-    const menu = Menu.buildFromTemplate(template)
-    Menu.setApplicationMenu(menu)
+    /*const menu = Menu.buildFromTemplate(template)
+    Menu.setApplicationMenu(menu) */
 
     var mainWindow = new BrowserWindow({
         width: 810,
@@ -38,7 +41,7 @@ app.on('ready', function () {
 
     const page = mainWindow.webContents;
 
-    autoUpdater
+    // autoUpdater
 
     // page.once('did-frame-finish-load', () => {
 
