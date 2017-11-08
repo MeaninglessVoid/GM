@@ -28,7 +28,7 @@ import * as request from 'request';
 request({
     url: "http://api.steampowered.com/ISteamApps/GetAppList/v0002/",
     json: true
-}, function(error, response, body) {
+}, (error, response, body) => {
 
     if (!error && response.statusCode === 200) {
         fs.writeFileSync(app.getPath("appData") + "/gm/" + 'games.json', JSON.stringify(body));
@@ -111,10 +111,10 @@ addGame = (file, gameIcons, parent) => {
 
 }
 
-//command that runs executable
-function runExe(executablePath) {
+//command that runs executables
+runExe = (executablePath) => {
 
-    child(executablePath, function(err, data) {
+    child(executablePath, (err, data) => {
 
         if (err) {
             console.error(err);
@@ -126,7 +126,7 @@ function runExe(executablePath) {
     });
 }
 
-function spawnLink(execPath) {
+spawnLink = (execPath) => {
     var appData = app.getPath("appData");
     var appDataLink = appData.slice(0, 9) + "\"" + appData.slice(9, appData.length - 16) + "\"" + appData.slice(appData.length - 16);
     cmd.run('cmd /c start ' + appDataLink + "\\gm\\links\\" + execPath + '.lnk');
@@ -154,7 +154,7 @@ fs.readdirSync(oldSteam).forEach((element) => {
     console.log(picked)
     if (picked != undefined) {
         addGame(picked.name, picked.appid, element);
-        ws.create(app.getPath("appData") + "/gm/links/", "steam://rungameid/" + picked.appid, function(err) {
+        ws.create(app.getPath("appData") + "/gm/links/", "steam://rungameid/" + picked.appid, (err) => {
             if (err) {
                 console.error(err)
             } else {
@@ -170,7 +170,7 @@ fs.readdirSync(steam).every((element, index) => {
         if (!isNaN(picture) && picture != 7 && picture != 760) {
             var picked = steamGames.applist.apps.filter(app => app.appid == picture);
             addGame(picked[0].name, picture, element);
-            ws.create(app.getPath("appData") + "/gm/links/", "steam://rungameid/" + picture, function(err) {
+            ws.create(app.getPath("appData") + "/gm/links/", "steam://rungameid/" + picture, (err) => {
                 if (err) {
                     console.error(err)
                 } else {
@@ -198,7 +198,7 @@ fs.readdirSync(origin).forEach(file => {
                 gameIcons[file].push(icon.toDataURL());
                 var data = icon.toDataURL().replace(/^data:image\/\w+;base64,/, "");
                 var buf = new Buffer(data, 'base64');
-                fs.writeFile(app.getPath("appData") + "/gm/icons/" + picture.substring(0, picture.length - 4) + '.png', buf, function(err) {
+                fs.writeFile(app.getPath("appData") + "/gm/icons/" + picture.substring(0, picture.length - 4) + '.png', buf, (err) => {
                     if (err) {
                         console.error(err);
                     }
@@ -218,7 +218,7 @@ for (let game in gameIcons) {
 //search funtion to look through all the games
 $("#search-text").on("keyup", () => {
     var g = $(this).val().toLowerCase();
-    $(".game .game-title").each(function() {
+    $(".game .game-title").each(() => {
         var s = $(this).text().toLowerCase();
         $(this).closest('.game')[s.indexOf(g) !== -1 ? 'show' : 'hide']();
     });
