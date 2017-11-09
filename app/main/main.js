@@ -1,6 +1,7 @@
 //get icon
 const remote = require('electron').remote;
 const ipcRenderer = require('electron').ipcRenderer;
+const dialog = remote.dialog;
 const app = remote.app;
 
 //create .png files
@@ -29,15 +30,22 @@ request({
     }
 })
 
-do {
-    const steamGames = require(app.getPath("appData") + "/gm/" + 'games.json');
-} while (!fs.existsSync(app.getPath("appData") + "/gm/" + 'games.json'));
+const steamGames = require(app.getPath("appData") + "/gm/" + 'games.json');
 
-
-ipcRenderer.on('updateReady', function(event, text) {
+ipcRenderer.on('updateReady', function (event, text) {
     // changes the text of the button
     // var container = document.getElementById('ready');
     // container.innerHTML = "new version ready!";
+    dialog.showMessageBox({
+        type: 'question',
+        buttons: ['Yes', 'No'],
+        title: 'Confirm',
+        message: 'A new update is downloaded, would you like to install it and restart?'
+    }, function (response) {
+        if (response === 0) { // Runs the following if 'Yes' is clicked
+            ipcRenderer.send('quitAndInstall')
+        }
+    })
     console.log("update ready");
 })
 
@@ -59,7 +67,7 @@ addGame = (file, gameIcons, parent) => {
     gameDiv.addClass('game');
     if (isSteam) {
         gameDiv.css("background-image", "url('http://cdn.akamai.steamstatic.com/steam/apps/" + gameIcons + "/header.jpg')")
-            //    background-size: 80px 60px;
+        //    background-size: 80px 60px;
         gameDiv.css("background-size", "23em 11em");
     }
 
@@ -152,7 +160,9 @@ fs.readdirSync(oldSteam).forEach((element) => {
     var picked = steamGames.applist.apps.find(app => app.name == element);
     if (picked != undefined) {
         addGame(picked.name, picked.appid, element);
-        ws.create(app.getPath("appData") + "/gm/links/", "steam://rungameid/" + picked.appid, (err) => { if (err) console.error(err) });
+        ws.create(app.getPath("appData") + "/gm/links/", "steam://rungameid/" + picked.appid, (err) => {
+            if (err) console.error(err)
+        });
     }
 })
 
@@ -162,7 +172,9 @@ fs.readdirSync(steam).every((element, index) => {
         if (!isNaN(picture) && picture != 7 && picture != 760) {
             var picked = steamGames.applist.apps.filter(app => app.appid == picture);
             addGame(picked[0].name, picture, element);
-            ws.create(app.getPath("appData") + "/gm/links/", "steam://rungameid/" + picture, (err) => { if (err) console.error(err) });
+            ws.create(app.getPath("appData") + "/gm/links/", "steam://rungameid/" + picture, (err) => {
+                if (err) console.error(err)
+            });
         }
     })
 })
@@ -183,7 +195,9 @@ fs.readdirSync(origin).forEach(file => {
                 var data = icon.toDataURL().replace(/^data:image\/\w+;base64,/, "");
                 var buf = new Buffer(data, 'base64');
                 var iconPath = app.getPath("appData") + "/gm/icons/" + picture.substring(0, picture.length - 4) + '.png';
-                fs.writeFile(iconPath, buf, (err) => { if (err) console.error(err) });
+                fs.writeFile(iconPath, buf, (err) => {
+                    if (err) console.error(err)
+                });
             })
         }
     })

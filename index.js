@@ -1,4 +1,5 @@
 const electron = require('electron')
+const ipcMain = electron.ipcMain;
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const dialog = electron.dialog
@@ -30,7 +31,10 @@ function createMainWindow() {
 
     mainWindow.loadURL('file://' + __dirname + '/app/main/main.html');
 
-    mainWindow.focus();
+    
+    mainWindow.on('closed', () => app.quit());
+    
+    return mainWindow;
 }
 
 app.on('ready', function() {
@@ -41,10 +45,6 @@ app.on('ready', function() {
     createMainWindow();
 
     autoUpdater.checkForUpdates();
-
-    autoUpdater.on('update-downloaded', (info) => {
-        win.webContents.send('updateReady')
-    });
 
     // const page = mainWindow.webContents;
 
@@ -79,6 +79,14 @@ app.on('ready', function() {
     // });
 
 });
+
+autoUpdater.on('update-downloaded', (info) => {
+    mainWindow.webContents.send('updateReady')
+});
+
+ipcMain.on("quitAndInstall", (event, arg) => {
+    autoUpdater.quitAndInstall();
+})
 
 app.on('window-all-closed', function() {
     app.quit();

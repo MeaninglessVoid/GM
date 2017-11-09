@@ -1,6 +1,6 @@
 {
   "name": "GM",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A simple game manager for Steam and Origin",
   "main": "index.js",
   "scripts": {
@@ -8,13 +8,6 @@
     "dist": "build",
     "build": "build --win",
     "ship": "build --win -p always"
-  },
-  "build": {
-    "appId": "GM",
-    "asar": "true",
-    "win": {
-      "target": "squirrel"
-    }
   },
   "author": "SamuelDub",
   "license": "ISC",
