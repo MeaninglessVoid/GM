@@ -83,24 +83,18 @@ module.exports = {
         var template = [{
                 label: 'File',
                 submenu: [
-                    // {
-                    //     label: 'Check For Updates',
-                    //     click: function () {
-                    //         check();
-                    //     }
-                    // },
                     {
                         label: 'About',
                         click: function() {
                             about();
                         }
                     },
-                    // {
-                    //     label: 'Settings',
-                    //     click: function () {
-                    //         settings();
-                    //     }
-                    // },
+                    {
+                        label: 'Settings',
+                        click: function () {
+                            settings();
+                        }
+                    },
                     {
                         type: "separator"
                     },
