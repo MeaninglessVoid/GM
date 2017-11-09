@@ -36,6 +36,7 @@ ipcRenderer.on('updateReady', function (event, text) {
     // changes the text of the button
     // var container = document.getElementById('ready');
     // container.innerHTML = "new version ready!";
+    console.log("update ready");
     dialog.showMessageBox({
         type: 'question',
         buttons: ['Yes', 'No'],
@@ -46,7 +47,6 @@ ipcRenderer.on('updateReady', function (event, text) {
             ipcRenderer.send('quitAndInstall')
         }
     })
-    console.log("update ready");
 })
 
 //add game to container
