@@ -1,29 +1,22 @@
 //get icon
-// const remote = require('electron').remote;
-// const app = remote.app;s
-import { remote } from 'electron';
-import { app } from 'remote'
+const remote = require('electron').remote;
+const app = remote.app;
 
 //create .png files
-// const fs = require('fs');
-import * as fs from 'fs';
+const fs = require('fs');
 
 //run command to execute .lnk files
-// var cmd = require('node-cmd');
-import * as cmd from 'node-cmd';
+var cmd = require('node-cmd');
 
 //make shortcut to run steam games
-// var ws = require('windows-shortcuts');
-import * as ws from 'windows-shortcuts';
+var ws = require('windows-shortcuts');
 
 //run .exe
-// const child = require('child_process').execFile;
-// const spawn = require('child_process').spawn;
-import { child, spawn } from 'child_process';
+const child = require('child_process').execFile;
+const spawn = require('child_process').spawn;
 
 //get updated list of steam games
-// var request = require("request");
-import * as request from 'request';
+var request = require("request");
 
 request({
     url: "http://api.steampowered.com/ISteamApps/GetAppList/v0002/",
@@ -35,8 +28,10 @@ request({
     }
 })
 
-// const steamGames = require(app.getPath("appData") + "/gm/" + 'games.json');
-import * as steamGames from app.getPath("appData") + '/gm/' + 'games.json';
+do {
+    const steamGames = require(app.getPath("appData") + "/gm/" + 'games.json');
+} while (!fs.existsSync(app.getPath("appData") + "/gm/" + 'games.json'));
+
 
 //add game to container
 addGame = (file, gameIcons, parent) => {

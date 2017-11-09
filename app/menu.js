@@ -7,18 +7,18 @@ const BrowserWindow = electron.BrowserWindow
 const fs = require('fs')
 
 //uses github repo as update server
-const GhReleases = require('electron-gh-releases')
+// const GhReleases = require('electron-gh-releases')
 
 //electron dosen't support prompts, so I have to use another package :(
-const prompt = require('electron-prompt')
+// const prompt = require('electron-prompt')
 
 //basic setup for GhReleases
-let options = {
-    repo: 'SamuelDub/DiscordBot-App',
-    currentVersion: app.getVersion()
-}
+// let options = {
+//     repo: 'SamuelDub/DiscordBot-App',
+//     currentVersion: app.getVersion()
+// }
 
-const updater = new GhReleases(options)
+// const updater = new GhReleases(options)
 
 //check for update and then ask user to restart if there is an update available
 // function check() {
@@ -55,7 +55,7 @@ function about() {
     dialog.showMessageBox({
         type: 'info',
         buttons: ['Ok'],
-        title: 'Discord Bot App',
+        title: 'GM',
         message: message
     })
 }
@@ -77,7 +77,7 @@ function openConsole() {
 }
 
 module.exports = {
-    array: function () {
+    array: function() {
 
         var template = [{
                 label: 'File',
@@ -90,7 +90,7 @@ module.exports = {
                     // },
                     {
                         label: 'About',
-                        click: function () {
+                        click: function() {
                             about();
                         }
                     },
@@ -113,7 +113,7 @@ module.exports = {
                 submenu: [{
                     label: 'Open Console',
                     accelerator: 'f12',
-                    click: function () {
+                    click: function() {
                         openConsole();
                     }
                 }]
