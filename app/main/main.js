@@ -1,5 +1,6 @@
 //get icon
 const remote = require('electron').remote;
+const ipcRenderer = require('electron').ipcRenderer;
 const app = remote.app;
 
 //create .png files
@@ -32,6 +33,13 @@ do {
     const steamGames = require(app.getPath("appData") + "/gm/" + 'games.json');
 } while (!fs.existsSync(app.getPath("appData") + "/gm/" + 'games.json'));
 
+
+ipcRenderer.on('updateReady', function(event, text) {
+    // changes the text of the button
+    // var container = document.getElementById('ready');
+    // container.innerHTML = "new version ready!";
+    console.log("update ready");
+})
 
 //add game to container
 addGame = (file, gameIcons, parent) => {

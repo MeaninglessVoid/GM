@@ -19,17 +19,7 @@ const template = menu.array();
 
 // const updater = new GhReleases(options)
 
-
-
-
-
-//MAKE SURE TO INSTALL THIS PACKAGE
-// const autoUpdater = require("electron-updater").autoUpdater;
-
-
-
-
-
+const autoUpdater = require("electron-updater").autoUpdater;
 
 function createMainWindow() {
     var mainWindow = new BrowserWindow({
@@ -49,6 +39,12 @@ app.on('ready', function() {
     Menu.setApplicationMenu(menu)
 
     createMainWindow();
+
+    autoUpdater.checkForUpdates();
+
+    autoUpdater.on('update-downloaded', (info) => {
+        win.webContents.send('updateReady')
+    });
 
     // const page = mainWindow.webContents;
 
