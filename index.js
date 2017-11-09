@@ -5,6 +5,8 @@ const BrowserWindow = electron.BrowserWindow
 const dialog = electron.dialog
 const Menu = electron.Menu
 
+let win;
+
 //menu
 const menu = require('./app/menu.js')
 
@@ -23,18 +25,18 @@ const template = menu.array();
 const autoUpdater = require("electron-updater").autoUpdater;
 
 function createMainWindow() {
-    var mainWindow = new BrowserWindow({
+    var win = new BrowserWindow({
         width: 810,
         height: 640,
         resizable: true
     })
 
-    mainWindow.loadURL('file://' + __dirname + '/app/main/main.html');
+    win.loadURL('file://' + __dirname + '/app/main/main.html');
 
     
-    mainWindow.on('closed', () => app.quit());
+    win.on('closed', () => app.quit());
     
-    return mainWindow;
+    return win;
 }
 
 app.on('ready', function() {
@@ -81,7 +83,7 @@ app.on('ready', function() {
 });
 
 autoUpdater.on('update-downloaded', (info) => {
-    mainWindow.webContents.send('updateReady')
+    win.webContents.send('updateReady')
 });
 
 ipcMain.on("quitAndInstall", (event, arg) => {

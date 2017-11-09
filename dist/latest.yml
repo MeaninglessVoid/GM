@@ -1,8 +1,8 @@
-version: 0.4.2
-releaseDate: '2017-11-09T07:05:53.468Z'
-path: GM Setup 0.4.2.exe
-url: GM Setup 0.4.2.exe
+version: 0.4.3
+releaseDate: '2017-11-09T07:11:02.532Z'
+path: GM Setup 0.4.3.exe
+url: GM Setup 0.4.3.exe
 sha512: >-
-  jrTLojhTj19G5hSnoz0a51z38WFWdW9/SaunKaSg8FeLernb6dLu0MGsUyL9DChA7LS1P2mhsXtPkxKeENrPvg==
-sha2: 9dda7d61838c3a8b95e1d15f9ea7b06ce3154fb78cfb112a1174446e56c18bdb
-githubArtifactName: GM-Setup-0.4.2.exe
+  4gnHtuVMqTeCvNAPudFIoV1NTiwW4elnaJ6AeQum/WAX4YBHUnJA//UNWCaQTPGSksgiPq1PpXB/BjSzMvlzEQ==
+sha2: cc0a34cd873929b28e2a521070a79a909d5b0cce1f75750a3b09145005ed579a
+githubArtifactName: GM-Setup-0.4.3.exe
