@@ -26,6 +26,11 @@ const template = menu.array();
 //MAKE SURE TO INSTALL THIS PACKAGE
 // const autoUpdater = require("electron-updater").autoUpdater;
 
+
+
+
+
+
 function createMainWindow() {
     var mainWindow = new BrowserWindow({
         width: 810,

@@ -41,8 +41,6 @@ addGame = (file, gameIcons, parent) => {
     let gamePathSteam = "C:/Program Files (x86)/Steam/userdata/" + parent + '/' + gameIcons;
     let altGamePathSteam = "C:/Program Files (x86)/Steam/steamapps/common/" + parent;
 
-    console.log(altGamePathSteam)
-
     if (fs.existsSync(gamePathSteam) || fs.existsSync(altGamePathSteam)) {
         isSteam = true;
     }
@@ -116,8 +114,6 @@ runExe = (executablePath) => {
             return;
         }
 
-        console.log(data.toString());
-
     });
 }
 
@@ -146,16 +142,9 @@ var oldSteam = "C:/Program Files (x86)/Steam/steamapps/common"
 
 fs.readdirSync(oldSteam).forEach((element) => {
     var picked = steamGames.applist.apps.find(app => app.name == element);
-    console.log(picked)
     if (picked != undefined) {
         addGame(picked.name, picked.appid, element);
-        ws.create(app.getPath("appData") + "/gm/links/", "steam://rungameid/" + picked.appid, (err) => {
-            if (err) {
-                console.error(err)
-            } else {
-                console.log('game added')
-            }
-        });
+        ws.create(app.getPath("appData") + "/gm/links/", "steam://rungameid/" + picked.appid, (err) => { if (err) console.error(err) });
     }
 })
 
@@ -165,13 +154,7 @@ fs.readdirSync(steam).every((element, index) => {
         if (!isNaN(picture) && picture != 7 && picture != 760) {
             var picked = steamGames.applist.apps.filter(app => app.appid == picture);
             addGame(picked[0].name, picture, element);
-            ws.create(app.getPath("appData") + "/gm/links/", "steam://rungameid/" + picture, (err) => {
-                if (err) {
-                    console.error(err)
-                } else {
-                    console.log('game added')
-                }
-            });
+            ws.create(app.getPath("appData") + "/gm/links/", "steam://rungameid/" + picture, (err) => { if (err) console.error(err) });
         }
     })
 })
@@ -187,17 +170,12 @@ fs.readdirSync(origin).forEach(file => {
             gameIcons[file].push(picture);
             var pathToPic = origin + file + "/" + picture;
             app.getFileIcon(pathToPic, (err, icon) => {
-                if (err) {
-                    console.error(err);
-                }
+                if (err) console.error(err);
                 gameIcons[file].push(icon.toDataURL());
                 var data = icon.toDataURL().replace(/^data:image\/\w+;base64,/, "");
                 var buf = new Buffer(data, 'base64');
-                fs.writeFile(app.getPath("appData") + "/gm/icons/" + picture.substring(0, picture.length - 4) + '.png', buf, (err) => {
-                    if (err) {
-                        console.error(err);
-                    }
-                });
+                var iconPath = app.getPath("appData") + "/gm/icons/" + picture.substring(0, picture.length - 4) + '.png';
+                fs.writeFile(iconPath, buf, (err) => { if (err) console.error(err) });
             })
         }
     })
@@ -227,8 +205,6 @@ $(document).on('click', '.buttons', () => {
     var parent = $(this).attr('parent');
     let gamePathSteam = "C:/Program Files (x86)/Steam/userdata/" + parent + '/' + gameId;
     let gamePathOrigin = "C:/Program Files (x86)/Origin Games/" + gameName + "/" + gameId;
-
-    console.log(gameId);
 
     //checks if game is from Origin or Steam
     if (fs.existsSync(gamePathSteam)) {

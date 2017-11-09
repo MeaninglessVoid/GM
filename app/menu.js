@@ -6,11 +6,12 @@ const BrowserWindow = electron.BrowserWindow
 //to change the bot key
 const fs = require('fs')
 
+//electron dosen't support prompts ( :( ), so I have to use another package
+const prompt = require('electron-prompt')
+
 //uses github repo as update server
 // const GhReleases = require('electron-gh-releases')
 
-//electron dosen't support prompts, so I have to use another package :(
-// const prompt = require('electron-prompt')
 
 //basic setup for GhReleases
 // let options = {
