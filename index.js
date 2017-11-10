@@ -1,10 +1,5 @@
-const electron = require('electron')
-const ipcMain = electron.ipcMain;
-const app = electron.app
-const BrowserWindow = electron.BrowserWindow
-const dialog = electron.dialog
-const Menu = electron.Menu
-
+const {app, BrowserWindow, ipcMain, Menu} = require('electron');
+const autoUpdater = require("electron-updater").autoUpdater;
 let win;
 
 //menu
@@ -22,21 +17,16 @@ const template = menu.array();
 
 // const updater = new GhReleases(options)
 
-const autoUpdater = require("electron-updater").autoUpdater;
 
-function createMainWindow() {
-    var win = new BrowserWindow({
+function createDefaultWindow() {
+    win = new BrowserWindow({
         width: 810,
         height: 640,
         resizable: true
-    })
-
+    });
     win.loadURL('file://' + __dirname + '/app/main/main.html');
-
-    
     win.on('closed', () => app.quit());
-    
-    return win;
+  return win;
 }
 
 app.on('ready', function() {
@@ -44,41 +34,11 @@ app.on('ready', function() {
     const menu = Menu.buildFromTemplate(template)
     Menu.setApplicationMenu(menu)
 
-    createMainWindow();
-
-    autoUpdater.checkForUpdates();
-
-    // const page = mainWindow.webContents;
-
-
-    // page.once('did-frame-finish-load', () => {
-
-    // Check for updates
-    // `status` returns true if there is a new update available
-    // updater.check((err, status) => {
-    //     if (!err && status) {
-    //         updater.download();
-    //     }
-    // })
-
-    // When an update has been downloaded
-    // updater.on('update-downloaded', (info) => {
-    //     dialog.showMessageBox({
-    //         type: 'question',
-    //         buttons: ['Yes', 'No'],
-    //         title: 'Confirm',
-    //         message: 'A new update has been downloaded, would you like to install it?'
-    //     }, function (response) {
-    //         if (response == 0) { // Runs the following if 'Yes' is clicked
-    //             updater.install()
-    //         }
-    //     })
-
-    // })
-
-    // Access electrons autoUpdater
-    // updater.autoUpdater;
-    // });
+    createDefaultWindow()
+    
+    setTimeout(function() {
+        autoUpdater.checkForUpdates();
+    }, 1000)
 
 });
 
@@ -89,7 +49,3 @@ autoUpdater.on('update-downloaded', (info) => {
 ipcMain.on("quitAndInstall", (event, arg) => {
     autoUpdater.quitAndInstall();
 })
-
-app.on('window-all-closed', function() {
-    app.quit();
-});

@@ -1,8 +1,10 @@
 //get icon
-const remote = require('electron').remote;
-const ipcRenderer = require('electron').ipcRenderer;
-const dialog = remote.dialog;
-const app = remote.app;
+const { remote, ipcRenderer } = require('electron');
+const { app, dialog } = remote;
+// const remote = require('electron').remote;
+// const ipcRenderer = require('electron').ipcRenderer;
+// const dialog = remote.dialog;
+// const app = remote.app;
 
 //create .png files
 const fs = require('fs');
@@ -32,10 +34,15 @@ request({
 
 const steamGames = require(app.getPath("appData") + "/gm/" + 'games.json');
 
-ipcRenderer.on('updateReady', function (event, text) {
+ipcRenderer.on('test', function (event, text) {
     // changes the text of the button
     // var container = document.getElementById('ready');
     // container.innerHTML = "new version ready!";
+    console.log("test");
+   
+})
+
+ipcRenderer.on('updateReady', function (event, text) {
     console.log("update ready");
     dialog.showMessageBox({
         type: 'question',
