@@ -34,14 +34,6 @@ request({
 
 const steamGames = require(app.getPath("appData") + "/gm/" + 'games.json');
 
-ipcRenderer.on('test', function (event, text) {
-    // changes the text of the button
-    // var container = document.getElementById('ready');
-    // container.innerHTML = "new version ready!";
-    console.log("test");
-   
-})
-
 ipcRenderer.on('updateReady', function (event, text) {
     console.log("update ready");
     dialog.showMessageBox({

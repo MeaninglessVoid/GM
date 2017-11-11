@@ -1,4 +1,9 @@
-const {app, BrowserWindow, ipcMain, Menu} = require('electron');
+const {
+    app,
+    BrowserWindow,
+    ipcMain,
+    Menu
+} = require('electron');
 const autoUpdater = require("electron-updater").autoUpdater;
 let win;
 
@@ -26,17 +31,17 @@ function createDefaultWindow() {
     });
     win.loadURL('file://' + __dirname + '/app/main/main.html');
     win.on('closed', () => app.quit());
-  return win;
+    return win;
 }
 
-app.on('ready', function() {
+app.on('ready', function () {
 
     const menu = Menu.buildFromTemplate(template)
     Menu.setApplicationMenu(menu)
 
     createDefaultWindow()
-    
-    setTimeout(function() {
+
+    setTimeout(function () {
         autoUpdater.checkForUpdates();
     }, 1000)
 
