@@ -1,0 +1,17 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-color: #21252a;
+    padding: 0;
+    margin: 0;
+}
+
+.title-container {
+    text-align: center;
+}
+
+.title {
+    color: gray;
+}
