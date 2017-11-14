@@ -209,16 +209,6 @@
 //     }
 // }
 
-// //search funtion to look through all the games
-// $("#search-text").on("keyup", () => {
-//     var g = $(this).val().toLowerCase();
-//     $(".game .game-title").each(() => {
-//         var s = $(this).text().toLowerCase();
-//         $(this).closest('.game')[s.indexOf(g) !== -1 ? 'show' : 'hide']();
-//     });
-
-// })
-
 // //runs .exe when play button is clicked
 // $(document).on('click', '.buttons', () => {
 //     var gameId = $(this).attr('id');
