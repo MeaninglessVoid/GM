@@ -10,7 +10,7 @@
     <div class="display-container">
         <div class="left-bar">
             <div class="search-container">
-                <input type="text" id="search-text" placeholder="Search"></input>
+                <input type="text" id="search-text" onkeyup="searchFunction()" placeholder="Search"></input>
             </div>
             <div class="game">
                 <h3 class="game-title">test</h3>
@@ -25,6 +25,19 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
 <script>
+    $.expr[":"].contains = $.expr.createPseudo(function (arg) {
+        return function (elem) {
+            return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+        };
+    });
+
+    function searchFunction() {
+        var searchTerm = $('#search-text').val();
+        $(".game")
+            .hide()
+            .filter(":contains('" + searchTerm + "')")
+            .show();
+    }
     require("./main.js");
 </script>
 

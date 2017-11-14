@@ -46,7 +46,8 @@ function createWindow() {
         resizable: true
     })
 
-    mainWindow.loadURL('file://' + __dirname + '/app/main-list/main.html');
+    mainWindow.loadURL('file://' + __dirname + '/app/main/main.html');
+    // mainWindow.loadURL('file://' + __dirname + '/app/main-list/main.html');
 
     mainWindow.focus();
 
