@@ -210,7 +210,7 @@ for (let game in gameIcons) {
 }
 
 //runs .exe when play button is clicked
-$(document).on('click', '.buttons', () => {
+$(document).on('click', '.buttons', function() {
     var gameId = $(this).attr('id');
     var gameName = $(this).attr('gameName');
     var parent = $(this).attr('parent');
