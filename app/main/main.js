@@ -34,14 +34,14 @@ request({
 
 const steamGames = require(app.getPath("appData") + "/gm/" + 'games.json');
 
-ipcRenderer.on('updateReady', function (event, text) {
+ipcRenderer.on('updateReady', function(event, text) {
     console.log("update ready");
     dialog.showMessageBox({
         type: 'question',
         buttons: ['Yes', 'No'],
         title: 'Confirm',
         message: 'A new update is downloaded, would you like to install it and restart?'
-    }, function (response) {
+    }, function(response) {
         if (response === 0) { // Runs the following if 'Yes' is clicked
             ipcRenderer.send('quitAndInstall')
         }
@@ -66,7 +66,7 @@ addGame = (file, gameIcons, parent) => {
     gameDiv.addClass('game');
     if (isSteam) {
         gameDiv.css("background-image", "url('http://cdn.akamai.steamstatic.com/steam/apps/" + gameIcons + "/header.jpg')")
-        //    background-size: 80px 60px;
+            //    background-size: 80px 60px;
         gameDiv.css("background-size", "23em 11em");
     }
 
