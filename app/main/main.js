@@ -1,10 +1,6 @@
 //get icon
-const { remote, ipcRenderer } = require('electron');
-const { app, dialog } = remote;
-// const remote = require('electron').remote;
-// const ipcRenderer = require('electron').ipcRenderer;
-// const dialog = remote.dialog;
-// const app = remote.app;
+const remote = require('electron').remote;
+const app = remote.app;
 
 //create .png files
 const fs = require('fs');
@@ -34,20 +30,6 @@ request({
 
 const steamGames = require(app.getPath("appData") + "/gm/" + 'games.json');
 
-ipcRenderer.on('updateReady', function(event, text) {
-    console.log("update ready");
-    dialog.showMessageBox({
-        type: 'question',
-        buttons: ['Yes', 'No'],
-        title: 'Confirm',
-        message: 'A new update is downloaded, would you like to install it and restart?'
-    }, function(response) {
-        if (response === 0) { // Runs the following if 'Yes' is clicked
-            ipcRenderer.send('quitAndInstall')
-        }
-    })
-})
-
 //add game to container
 addGame = (file, gameIcons, parent) => {
 
@@ -56,17 +38,16 @@ addGame = (file, gameIcons, parent) => {
     let gamePathSteam = "C:/Program Files (x86)/Steam/userdata/" + parent + '/' + gameIcons;
     let altGamePathSteam = "C:/Program Files (x86)/Steam/steamapps/common/" + parent;
 
+    //checks if game is from Origin or Steam
     if (fs.existsSync(gamePathSteam) || fs.existsSync(altGamePathSteam)) {
         isSteam = true;
     }
-    //checks if game is from Origin or Steam
 
     //div that holds all the content
     var gameDiv = $(document.createElement('div'));
     gameDiv.addClass('game');
     if (isSteam) {
         gameDiv.css("background-image", "url('http://cdn.akamai.steamstatic.com/steam/apps/" + gameIcons + "/header.jpg')")
-            //    background-size: 80px 60px;
         gameDiv.css("background-size", "23em 11em");
     }
 
@@ -82,7 +63,6 @@ addGame = (file, gameIcons, parent) => {
     gameTitle.addClass('game-title');
     gameTitle.html(file);
 
-
     //button to launch the game
     var playButton = $(document.createElement('input'));
     playButton.addClass('buttons');
@@ -95,9 +75,6 @@ addGame = (file, gameIcons, parent) => {
         playButton.attr('id', gameIcons[0]);
     }
     playButton.attr('gameName', file);
-
-
-
 
     //append all elements to the div and to the container
     $('.game-container').append(gameDiv);
@@ -115,7 +92,6 @@ addGame = (file, gameIcons, parent) => {
         $(gameDiv).append(gameTitle);
         $(gameDiv).append(playButton);
     }
-
 
 }
 
