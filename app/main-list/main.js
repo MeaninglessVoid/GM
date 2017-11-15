@@ -80,7 +80,7 @@ spawnLink = (execPath) => {
 const steam = "C:/Program Files (x86)/Steam/userdata/";
 const origin = "C:/Program Files (x86)/Origin Games/";
 
-//create object to hold array of icon names
+//create object to hold array of games
 let gameIcons = {};
 
 //create folder to hold icons if it doesn't exist

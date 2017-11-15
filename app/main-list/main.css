@@ -13,14 +13,21 @@ body {
     color: gray;
 }
 
+.game-active {
+    margin: 0;
+    width: 100%;
+    height: 2em;
+    line-height: 2em;
+    background-color: #36393e !important;
+    border: 1px solid #282a2e;
+}
+
 .game {
     margin: 0;
     width: 100%;
     height: 2em;
     line-height: 2em;
-    /* margin-bottom: 0.1em; */
-    background-color: #36393e;
-    border: 1px solid #282a2e;
+    background-color: #2f3136;
 }
 
 .game-title {

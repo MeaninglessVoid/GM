@@ -11,13 +11,17 @@
         <h1 class='title'>Settings</h1>
     </div>
     <div class='main-body'>
-        <form>
-            <input type="radio" name="style" value="list" checked> List<br>
-            <input type="radio" name="style" value="spaced"> Spaced
+        <form class='settings-category' id='view-options'>
+            <h2 class='settings-title'>View Options</h2>
+            <input class='option' type="radio" name="style" value="list" checked>List</input>
+            <br>
+            <input class='option' type="radio" name="style" value="spaced">Spaced</input>
         </form>
     </div>
+    <input type="button" class="buttons" id="save-button" value="Save Changes"></input>
 </body>
 
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
 <script>
     require('./settings.js')
 </script>

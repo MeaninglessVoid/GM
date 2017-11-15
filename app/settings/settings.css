@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color: #21252a;
+    background-color: #2f3136;
     padding: 0;
     margin: 0;
 }
@@ -14,4 +14,41 @@ body {
 
 .title {
     color: gray;
+}
+
+.settings-category {
+    padding-top: 0.25em;
+    padding-bottom: 1em;
+    width: 95%;
+    margin-left: 1em;
+    background-color: #36393e;
+    color: gray;
+}
+
+.settings-title {
+    text-align: center;
+    color: gray;
+    margin-bottom: 0;
+}
+
+.option {
+    margin-left: 2em;
+}
+
+.buttons {
+    background-color: #4CAF50;
+    border-radius: 8px;
+    color: white;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #4CAF50 !important;
+    font-size: 10px;
+    margin-top: 1em;
+}
+
+#save-button {
+    position: fixed !important;
+    right: 1em !important;
+    bottom: 1em !important;
 }

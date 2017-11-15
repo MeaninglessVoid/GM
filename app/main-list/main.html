@@ -20,11 +20,17 @@
             <h1 class='info-title'>More Information</h1>
         </div>
     </div>
-
 </body>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
 <script>
+    //highlight game that has been clicked
+    $(document).on('click', '.game', function() {
+        var clickedChannel = $(this)
+        $(".game").removeClass('game-active')
+        clickedChannel.addClass('game-active')
+    })
+
     $.expr[":"].contains = $.expr.createPseudo(function(arg) {
         return function(elem) {
             return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
