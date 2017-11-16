@@ -64,6 +64,14 @@ function createWindow(view) {
     })
 }
 
+function createDefaultSettings() {
+    var defaultSettings = {
+        "view": "list"
+    }
+
+    return defaultSettings;
+}
+
 app.on('ready', function() {
 
     const menu = Menu.buildFromTemplate(template)
@@ -72,7 +80,8 @@ app.on('ready', function() {
     const settingsPath = app.getPath("appData") + "/gm/settings.json";
 
     if (!fs.existsSync(settingsPath)) {
-        fs.writeFileSync(settingsPath, "");
+        var baseSettings = createDefaultSettings();
+        fs.writeFileSync(settingsPath, JSON.stringify(baseSettings), 'utf8');
     }
 
     const settings = require(settingsPath)
