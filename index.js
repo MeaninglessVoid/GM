@@ -1,5 +1,7 @@
 const { electron, app, BrowserWindow, dialog, Menu } = require('electron');
 
+const fs = require('fs')
+
 //menu
 const menu = require('./app/menu.js')
 
@@ -39,15 +41,21 @@ updater.on('update-downloaded', (info) => {
 
 updater.autoUpdater;
 
-function createWindow() {
+function createWindow(view) {
     var mainWindow = new BrowserWindow({
         width: 810,
         height: 640,
         resizable: true
     })
 
-    // mainWindow.loadURL('file://' + __dirname + '/app/main/main.html');
-    mainWindow.loadURL('file://' + __dirname + '/app/main-list/main.html');
+    switch (view) {
+        case "list":
+            mainWindow.loadURL('file://' + __dirname + '/app/main-list/main.html');
+            break;
+        case "tiled":
+            mainWindow.loadURL('file://' + __dirname + '/app/main/main.html');
+            break;
+    }
 
     mainWindow.focus();
 
@@ -61,6 +69,15 @@ app.on('ready', function() {
     const menu = Menu.buildFromTemplate(template)
     Menu.setApplicationMenu(menu)
 
-    createWindow();
+    const settingsPath = app.getPath("appData") + "/gm/settings.json";
+
+    if (!fs.existsSync(settingsPath)) {
+        fs.writeFileSync(settingsPath, "");
+    }
+
+    const settings = require(settingsPath)
+    const view = settings.view;
+
+    createWindow(view);
 
 });

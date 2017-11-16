@@ -15,7 +15,7 @@
             <h2 class='settings-title'>View Options</h2>
             <input class='option' type="radio" name="style" value="list" checked>List (Default)</input>
             <br>
-            <input class='option' type="radio" name="style" value="spaced">Tiled</input>
+            <input class='option' type="radio" name="style" value="tiled">Tiled</input>
         </form>
     </div>
     <input type="button" class="buttons" id="save-button" value="Save Changes"></input>
@@ -23,7 +23,35 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
 <script>
-    require('./settings.js')
+    const remote = require('electron').remote;
+    const app = remote.app;
+
+    const fs = require('fs')
+
+    $(document).on('click', '#save-button', function() {
+        console.log('ran')
+
+        var view = document.querySelector('input[name="style"]:checked').value;
+
+        var settingsObj = {
+            "view": view
+        }
+
+        console.log(app.getPath("appData") + "/gm/settings.json")
+
+        fs.writeFile(app.getPath("appData") + "/gm/settings.json", JSON.stringify(settingsObj), 'utf8', function(err) {
+            if (err) {
+                console.error(err);
+            }
+
+            console.log("The file was saved")
+
+        });
+    })
+
+    function save() {
+
+    }
 </script>
 
 </html>
