@@ -65,9 +65,12 @@ body {
 }
 
 .search-container {
-    width: 100%;
-    text-align: center;
+    position: fixed;
+    left: 1em;
+    /* width: 100%; */
+    /* text-align: center; */
     margin-bottom: 1em;
+    z-index: 100;
 }
 
 #search-text {
@@ -91,12 +94,18 @@ body {
 .left-bar {
     position: absolute;
     left: 0;
-    top: 0;
+    top: 3em;
     bottom: 0;
     width: 40%;
     background-color: #2f3136;
     overflow-y: scroll;
-    /* overflow-y: scroll; */
+}
+
+.game-container {
+    position: absolute;
+    left: 0;
+    background-color: #2f3136;
+    overflow-y: scroll;
 }
 
 .info-container {

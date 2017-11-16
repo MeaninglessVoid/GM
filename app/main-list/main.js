@@ -47,12 +47,12 @@ addGame = (file, gameIcons, parent, isSteam) => {
     var gameDiv = $(document.createElement('div'));
     gameDiv.addClass('game');
 
-    var gameTitle = $(document.createElement('h3'));
+    var gameTitle = $(document.createElement('h5'));
     gameTitle.addClass('game-title');
     gameTitle.html(file);
 
     //append all elements to the div and to the container
-    $('.left-bar').append(gameDiv);
+    $('.game-container').append(gameDiv);
     $(gameDiv).append(gameTitle);
 
 }
