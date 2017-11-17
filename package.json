@@ -1,6 +1,6 @@
 {
     "name": "GM",
-    "version": "0.7.2",
+    "version": "0.7.3",
     "description": "A simple game manager for Steam and Origin",
     "main": "index.js",
     "scripts": {

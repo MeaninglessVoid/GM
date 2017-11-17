@@ -39,13 +39,14 @@ updater.on('update-downloaded', (info) => {
 
 })
 
-updater.autoUpdater;
+// updater.autoUpdater;
 
 function createWindow(view) {
     var mainWindow = new BrowserWindow({
         width: 810,
         height: 640,
-        resizable: true
+        resizable: true,
+        icon: "./icon.ico"
     })
 
     switch (view) {
