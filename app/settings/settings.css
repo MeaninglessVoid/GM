@@ -1,5 +1,5 @@
 * {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 body {
@@ -19,6 +19,7 @@ body {
 .settings-category {
     padding-top: 0.25em;
     padding-bottom: 1em;
+    border-radius: 5px;
     width: 95%;
     margin-left: 1em;
     background-color: #36393e;

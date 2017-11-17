@@ -3,7 +3,7 @@
 
 <head>
     <link rel="stylesheet" href="./settings.css" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 </head>
 
 <body>
@@ -23,34 +23,7 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
 <script>
-    const remote = require('electron').remote;
-    const app = remote.app;
-
-    const fs = require('fs')
-
-    $(document).on('click', '#save-button', function() {
-        console.log('ran')
-
-        var view = document.querySelector('input[name="style"]:checked').value;
-
-        var settingsObj = {
-            "view": view
-        }
-
-        console.log(app.getPath("appData") + "/gm/settings.json")
-
-        fs.writeFile(app.getPath("appData") + "/gm/settings.json", JSON.stringify(settingsObj), 'utf8', function(err) {
-            if (err) {
-                console.error(err);
-            }
-            
-            console.log("The file was saved")
-
-            var window = remote.getCurrentWindow();
-            window.close();
-
-        });
-    })
+    require('./settings.js')
 </script>
 
 </html>
