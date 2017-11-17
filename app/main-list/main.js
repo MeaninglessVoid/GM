@@ -47,6 +47,10 @@ addGame = (file, gameIcons, parent, isSteam) => {
     var gameDiv = $(document.createElement('div'));
     gameDiv.addClass('game');
 
+    if(isSteam) {
+        gameDiv.attr('id', gameIcons)
+    }
+
     var gameTitle = $(document.createElement('h5'));
     gameTitle.addClass('game-title');
     gameTitle.html(file);
@@ -148,7 +152,7 @@ for (let game in gameIcons) {
 }
 
 //runs .exe when play button is clicked
-$(document).on('click', '.buttons', function() {
+$(document).on('click', '.buttons', function () {
     var gameId = $(this).attr('id');
     var gameName = $(this).attr('gameName');
     var parent = $(this).attr('parent');
@@ -163,3 +167,22 @@ $(document).on('click', '.buttons', function() {
     }
 
 });
+
+
+//highlight game that has been clicked
+$(document).on('click', '.game', function () {
+    console.log('ran')
+    var clickedChannel = $(this)
+    $(".game").removeClass('game-active')
+    clickedChannel.addClass('game-active')
+    
+    $('.starter-information').empty();
+
+    var gameDiv = $('.game-banner')
+    var gameId = $(this).attr('id');
+    gameDiv.css("background-image", "url('http://cdn.akamai.steamstatic.com/steam/apps/" + gameId + "/header.jpg')")
+
+})
+
+{/* <img class="game-banner" href="http://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg"/> */}
+    // gameDiv.css("background-image", "url('http://cdn.akamai.steamstatic.com/steam/apps/" + gameIcons + "/header.jpg')")
