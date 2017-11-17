@@ -46,6 +46,7 @@ addGame = (file, gameIcons, parent, isSteam) => {
     //div that holds all the content
     var gameDiv = $(document.createElement('div'));
     gameDiv.addClass('game');
+    gameDiv.attr('title', file)
 
     if(isSteam) {
         gameDiv.attr('id', gameIcons)
@@ -181,6 +182,10 @@ $(document).on('click', '.game', function () {
     var gameDiv = $('.game-banner')
     var gameId = $(this).attr('id');
     gameDiv.css("background-image", "url('http://cdn.akamai.steamstatic.com/steam/apps/" + gameId + "/header.jpg')")
+
+    var gameName = $('#game-name')
+    var gameTitle = $(this).attr('title');
+    gameName.html(gameTitle)
 
 })
 
