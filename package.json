@@ -1,14 +1,19 @@
 {
     "name": "GM",
-    "version": "0.6.1",
+    "version": "0.7.2",
     "description": "A simple game manager for Steam and Origin",
     "main": "index.js",
-    "repository": "https://github.com/SamuelDub/GM",
     "scripts": {
         "start": "electron .",
-        "dist": "build",
-        "build": "build --win",
-        "ship": "build --win -p always"
+        "dist": "build"
+    },
+    "build": {
+        "appId": "discordbotapp",
+        "asar": "true",
+        "win": {
+            "target": "squirrel",
+            "icon": "icon.ico"
+        }
     },
     "author": "SamuelDub",
     "license": "ISC",
