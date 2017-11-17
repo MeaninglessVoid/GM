@@ -27,6 +27,7 @@ function settings() {
         width: 700,
         height: 500,
         resizable: false,
+        fullscreen: false,
         icon: "./icon.ico"
     })
     settingsWindow.loadURL('file://' + __dirname + '/settings/settings.html');

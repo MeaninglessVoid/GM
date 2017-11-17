@@ -46,6 +46,7 @@ function createWindow(view) {
         width: 810,
         height: 640,
         resizable: true,
+        fullscreen: false,
         icon: "./icon.ico"
     })
 
