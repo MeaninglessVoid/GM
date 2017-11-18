@@ -3,8 +3,13 @@ const app = remote.app;
 
 const fs = require('fs')
 
+const settings = require(app.getPath("appData") + "/gm/settings.json");
+
+var currentView = settings.view;
+
+$('input[value=' + currentView + ']').prop("checked", true)
+
 $(document).on('click', '#save-button', function() {
-    console.log('ran')
 
     var view = document.querySelector('input[name="style"]:checked').value;
 
@@ -19,7 +24,7 @@ $(document).on('click', '#save-button', function() {
             console.error(err);
         }
 
-        console.log("The file was saved")
+        alert("Your settings have been saved, restart application to apply changes")
 
         var window = remote.getCurrentWindow();
         window.close();
