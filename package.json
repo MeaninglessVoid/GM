@@ -25,6 +25,7 @@
     "dependencies": {
         "7zip-bin-win": "^2.1.1",
         "child_process": "^1.0.2",
+        "color-picker": "0.0.1",
         "electron-gh-releases": "^2.0.4",
         "electron-prompt": "^0.4.0",
         "electron-updater": "^2.16.1",
