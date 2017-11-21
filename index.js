@@ -1,4 +1,10 @@
-const { electron, app, BrowserWindow, dialog, Menu } = require('electron');
+const {
+    electron,
+    app,
+    BrowserWindow,
+    dialog,
+    Menu
+} = require('electron');
 
 const fs = require('fs')
 
@@ -26,17 +32,16 @@ updater.check((err, status) => {
 
 // When an update has been downloaded
 updater.on('update-downloaded', (info) => {
-    dialog.showMessageBox({
-        type: 'question',
-        buttons: ['Yes', 'No'],
-        title: 'Confirm',
-        message: 'A new update has been downloaded, would you like to install it?'
-    }, function(response) {
-        if (response == 0) { // Runs the following if 'Yes' is clicked
-            updater.install()
-        }
-    })
-
+    // dialog.showMessageBox({
+    //     type: 'question',
+    //     buttons: ['Yes', 'No'],
+    //     title: 'Confirm',
+    //     message: 'A new update has been downloaded, would you like to install it?'
+    // }, function(response) {
+    //     if (response == 0) { // Runs the following if 'Yes' is clicked
+    //     }
+    // })
+    updater.install()
 })
 
 // updater.autoUpdater;
@@ -74,7 +79,7 @@ function createDefaultSettings() {
     return defaultSettings;
 }
 
-app.on('ready', function() {
+app.on('ready', function () {
 
     const menu = Menu.buildFromTemplate(template)
     Menu.setApplicationMenu(menu)

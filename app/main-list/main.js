@@ -1,6 +1,7 @@
 //get icon
 const remote = require('electron').remote;
 const app = remote.app;
+const BrowserWindow = remote.BrowserWindow;
 
 //create .png files
 const fs = require('fs');
@@ -183,11 +184,19 @@ $(document).on('click', '.game', function () {
     var gameId = $(this).attr('id');
     gameDiv.css("background-image", "url('http://cdn.akamai.steamstatic.com/steam/apps/" + gameId + "/header.jpg')")
 
-    var gameName = $('#game-name')
+    var gameName = $('.game-header')
     var gameTitle = $(this).attr('title');
     gameName.html(gameTitle)
 
 })
 
-{/* <img class="game-banner" href="http://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg"/> */}
-    // gameDiv.css("background-image", "url('http://cdn.akamai.steamstatic.com/steam/apps/" + gameIcons + "/header.jpg')")
+$(document).on('click', '.settings-icon', function() {
+    let settingsWindow = new BrowserWindow({
+        width: 700,
+        height: 500,
+        resizable: false,
+        fullscreen: false,
+        icon: "./icon.ico"
+    })
+    settingsWindow.loadURL('file://' + __dirname + '/../settings/settings.html');
+})

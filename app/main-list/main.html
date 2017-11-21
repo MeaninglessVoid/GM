@@ -3,7 +3,7 @@
 
 <head>
     <link rel="stylesheet" href="./main.css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
 
 <body>
@@ -21,7 +21,9 @@
         <div class="info-container">
             <div class='starter-information'>
                 <h1 class='info-title' id='welcome'>Welcome to GM!</h1>
-                <h3 class='info-title' id='welcome-text'>GM is a cross-platform game manager, meaning instead of having to open up programs like Steam and Origin seperately, you can just use this application to launch all of your games! (More supported platforms to come soon)
+                <h3 class='info-title' id='welcome-text'>GM is a cross-platform game manager, meaning instead of having to open up programs like Steam and Origin
+                    seperately, you can just use this application to launch all of your games! (More supported platforms
+                    to come soon)
                 </h3>
                 <br>
                 <p class='info-title'>Click any game on the left to get started!</p>
@@ -29,16 +31,21 @@
             <div class='game-content'>
                 <div class="game-banner">
                 </div>
-                <h1 class='info-title' id='game-name'></h1>
+                <h1 class='game-header'></h1>
             </div>
+            <i class="settings-icon" data-feather="settings"></i>
         </div>
     </div>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
-    $.expr[":"].contains = $.expr.createPseudo(function(arg) {
-        return function(elem) {
+    feather.replace()
+</script>
+<script>
+    $.expr[":"].contains = $.expr.createPseudo(function (arg) {
+        return function (elem) {
             return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
         };
     });

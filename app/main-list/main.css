@@ -1,5 +1,5 @@
 * {
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 
 body {
@@ -11,6 +11,13 @@ body {
 .info-title {
     text-align: center;
     color: gray;
+}
+
+.game-header {
+    text-align: center;
+    margin-left: 1em;
+    margin-right: 1em;
+    color: rgb(192, 192, 192) !important;
 }
 
 #welcome {
@@ -128,6 +135,19 @@ body {
     right: 0;
     background-color: #36393e;
     overflow-y: scroll;
+}
+
+.settings-icon {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    color: rgb(163, 159, 159);
+}
+
+.settings-icon:hover {
+    transition: 0.9s;
+    transform: rotate(180deg);
+    color: rgb(228, 226, 226);
 }
 
 .starter-information {}
