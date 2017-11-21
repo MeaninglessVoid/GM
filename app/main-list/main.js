@@ -1,3 +1,6 @@
+//add settings icon first
+feather.replace()
+
 //get icon
 const remote = require('electron').remote;
 const app = remote.app;
@@ -49,7 +52,7 @@ addGame = (file, gameIcons, parent, isSteam) => {
     gameDiv.addClass('game');
     gameDiv.attr('title', file)
 
-    if(isSteam) {
+    if (isSteam) {
         gameDiv.attr('id', gameIcons)
     }
 
@@ -132,16 +135,16 @@ fs.readdirSync(origin).forEach(file => {
             pictureName = picture;
             gameIcons[file].push(picture);
             var pathToPic = origin + file + "/" + picture;
-            app.getFileIcon(pathToPic, (err, icon) => {
-                if (err) console.error(err);
-                gameIcons[file].push(icon.toDataURL());
-                var data = icon.toDataURL().replace(/^data:image\/\w+;base64,/, "");
-                var buf = new Buffer(data, 'base64');
-                var iconPath = app.getPath("appData") + "/gm/icons/" + picture.substring(0, picture.length - 4) + '.png';
-                fs.writeFile(iconPath, buf, (err) => {
-                    if (err) console.error(err)
-                });
-            })
+            // app.getFileIcon(pathToPic, (err, icon) => {
+            //     if (err) console.error(err);
+            //     gameIcons[file].push(icon.toDataURL());
+            //     var data = icon.toDataURL().replace(/^data:image\/\w+;base64,/, "");
+            //     var buf = new Buffer(data, 'base64');
+            //     var iconPath = app.getPath("appData") + "/gm/icons/" + picture.substring(0, picture.length - 4) + '.png';
+            //     fs.writeFile(iconPath, buf, (err) => {
+            //         if (err) console.error(err)
+            //     });
+            // })
         }
     })
 })
@@ -154,7 +157,7 @@ for (let game in gameIcons) {
 }
 
 //runs .exe when play button is clicked
-$(document).on('click', '.buttons', function () {
+$(document).on('click', '.buttons', function() {
     var gameId = $(this).attr('id');
     var gameName = $(this).attr('gameName');
     var parent = $(this).attr('parent');
@@ -172,12 +175,12 @@ $(document).on('click', '.buttons', function () {
 
 
 //highlight game that has been clicked
-$(document).on('click', '.game', function () {
+$(document).on('click', '.game', function() {
     console.log('ran')
     var clickedChannel = $(this)
     $(".game").removeClass('game-active')
     clickedChannel.addClass('game-active')
-    
+
     $('.starter-information').empty();
 
     var gameDiv = $('.game-banner')
