@@ -13,9 +13,9 @@ $(document).on('click', '#save-button', function() {
 
     var view = document.querySelector('input[name="style"]:checked').value;
 
-    var settingsObj = {
-        "view": view
-    }
+    var settingsObj = settings;
+
+    settingsObj.view = view;
 
     console.log(app.getPath("appData") + "/gm/settings.json")
 
@@ -24,10 +24,11 @@ $(document).on('click', '#save-button', function() {
             console.error(err);
         }
 
-        alert("Your settings have been saved, restart application to apply changes")
+        alert("Your settings have been saved, application will restart to apply changes")
 
-        var window = remote.getCurrentWindow();
-        window.close();
+        app.relaunch();
+        app.exit();
+
 
     });
 })
