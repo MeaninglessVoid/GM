@@ -32,15 +32,6 @@ updater.check((err, status) => {
 
 // When an update has been downloaded
 updater.on('update-downloaded', (info) => {
-    // dialog.showMessageBox({
-    //     type: 'question',
-    //     buttons: ['Yes', 'No'],
-    //     title: 'Confirm',
-    //     message: 'A new update has been downloaded, would you like to install it?'
-    // }, function(response) {
-    //     if (response == 0) { // Runs the following if 'Yes' is clicked
-    //     }
-    // })
     updater.install()
 })
 
@@ -79,7 +70,7 @@ function createDefaultSettings() {
     return defaultSettings;
 }
 
-app.on('ready', function () {
+app.on('ready', function() {
 
     const menu = Menu.buildFromTemplate(template)
     Menu.setApplicationMenu(menu)

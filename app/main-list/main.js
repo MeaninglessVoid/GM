@@ -194,6 +194,7 @@ $(document).on('click', '.game', function() {
 })
 
 $(document).on('click', '.settings-icon', function() {
+
     let settingsWindow = new BrowserWindow({
         width: 700,
         height: 500,
@@ -201,5 +202,7 @@ $(document).on('click', '.settings-icon', function() {
         fullscreen: false,
         icon: "./icon.ico"
     })
+
     settingsWindow.loadURL('file://' + __dirname + '/../settings/settings.html');
+
 })
