@@ -41,7 +41,7 @@ function createWindow(view) {
     var mainWindow = new BrowserWindow({
         width: 810,
         height: 640,
-        resizable: true,
+        resizable: false,
         fullscreen: false,
         icon: "./icon.ico"
     })
