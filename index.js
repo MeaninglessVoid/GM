@@ -52,7 +52,6 @@ function createWindow(view) {
             break;
         case "tiled":
             mainWindow.loadURL('file://' + __dirname + '/app/main/main.html');
-            break;
     }
 
     mainWindow.focus();
